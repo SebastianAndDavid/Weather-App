@@ -1,16 +1,26 @@
-export default function Home() {
-  const API_KEY = "d014903a08a44fcbaa5164753232205";
-  const CITY = "Portland";
+import { useState } from "react";
+import { fetchWeather } from "../Services/utils";
 
-  async function fetchWeather() {
-    const data = await fetch(
-      `http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${CITY}`
-    );
-    const res = await data.json();
-    console.log("res", res);
+export default function Home() {
+  const [searchCity, setSearchCity] = useState("");
+  const [cityWeather, setCityWeather] = useState("");
+
+  console.log("cityWeather", cityWeather);
+
+  async function handleFetchWeather() {
+    const city = searchCity;
+    const data = await fetchWeather(city);
+    setCityWeather(data);
+    return data;
   }
 
-  fetchWeather();
-
-  return <div>Home</div>;
+  return (
+    <div>
+      <input
+        onChange={(e) => setSearchCity(e.target.value)}
+        placeholder="Search a City..."
+      />
+      <button onClick={handleFetchWeather}>Submit</button>
+    </div>
+  );
 }
