@@ -1,4 +1,5 @@
-const key = "d014903a08a44fcbaa5164753232205";
+const key = import.meta.env;
+
 async function fetchWeather(city) {
   const data = await fetch(
     `http://api.weatherapi.com/v1/current.json?key=${key}&q=${city}`
