@@ -73,7 +73,13 @@ export default function Home() {
       <div className="recently-searched-cities">
         <h5>Recently Searched Cities</h5>
       </div>
-      <RecentCities city={portland} />
+      <div className="recent-cities">
+        <RecentCities city={portland} />
+        <RecentCities city={portland} />
+        <RecentCities city={portland} />
+        <RecentCities city={portland} />
+        <RecentCities city={portland} />
+      </div>
     </div>
   );
 }
