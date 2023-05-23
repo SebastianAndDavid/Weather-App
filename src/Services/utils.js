@@ -1,4 +1,4 @@
-const key = import.meta.env;
+const key = import.meta.env.VITE_API_KEY;
 
 async function fetchWeather(city) {
   const data = await fetch(

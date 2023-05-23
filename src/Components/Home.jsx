@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { fetchWeather } from "../Services/utils";
+import DailyForecast from "./DailyForecast";
+import "./Home.css";
 
 export default function Home() {
   const [searchCity, setSearchCity] = useState("");
@@ -15,12 +17,17 @@ export default function Home() {
   }
 
   return (
-    <div>
-      <input
-        onChange={(e) => setSearchCity(e.target.value)}
-        placeholder="Search a City..."
-      />
-      <button onClick={handleFetchWeather}>Submit</button>
+    <div className="home">
+      <header className="search-field">
+        <h3>Weather App</h3>
+        <input
+          onChange={(e) => setSearchCity(e.target.value)}
+          placeholder="Search a City..."
+        />
+        <button onClick={handleFetchWeather}>Submit</button>
+        <button>Logout</button>
+      </header>
+      <DailyForecast />
     </div>
   );
 }
