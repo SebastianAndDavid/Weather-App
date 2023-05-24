@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { fetchWeather } from "../Services/utils";
 import DailyForecast from "./DailyForecast";
 import "./Home.css";
 import RecentCities from "./RecentCities";
-import { userSignUp } from "../Services/supabase-utils";
 
 export default function Home() {
   const portland = {
@@ -57,11 +56,6 @@ export default function Home() {
     return data;
   }
 
-  async function doSignUp() {
-    const user = await userSignUp();
-    return user;
-  }
-
   return (
     <div className="home">
       <header className="search-field">
@@ -83,7 +77,6 @@ export default function Home() {
         <RecentCities city={portland} />
         <RecentCities city={portland} />
         <RecentCities city={portland} />
-        <button onClick={() => doSignUp()}>test Submit</button>
       </div>
     </div>
   );
