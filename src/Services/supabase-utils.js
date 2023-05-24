@@ -4,12 +4,11 @@ const key = import.meta.env.VITE_SUPABASE_KEY;
 
 const supabase = createClient(url, key);
 
-async function userSignUp() {
+async function userSignUp(email, password) {
   const { data, error } = await supabase.auth.signUp({
-    email: "testInMay@hardcoded.com",
-    password: "123456",
+    email,
+    password,
   });
-  console.log("error", error);
   if (data) {
     return data;
   } else {
@@ -17,12 +16,11 @@ async function userSignUp() {
   }
 }
 
-async function userSignIn() {
+async function userSignIn(email, password) {
   const { data, error } = await supabase.auth.signInWithPassword({
-    email: "testInMay@hardcoded.com",
-    password: "123456",
+    email,
+    password,
   });
-  console.log("error", error);
   if (data) {
     return data;
   } else {
