@@ -28,4 +28,9 @@ async function userSignIn(email, password) {
   }
 }
 
-export { userSignUp, userSignIn };
+async function logOut() {
+  const { error } = await supabase.auth.signOut();
+  return error;
+}
+
+export { userSignUp, userSignIn, logOut };

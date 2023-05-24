@@ -3,6 +3,7 @@ import { fetchWeather } from "../Services/utils";
 import DailyForecast from "./DailyForecast";
 import "./Home.css";
 import RecentCities from "./RecentCities";
+import { logOut } from "../Services/supabase-utils";
 
 export default function Home() {
   const portland = {
@@ -56,6 +57,11 @@ export default function Home() {
     return data;
   }
 
+  async function handlelogOut() {
+    const res = await logOut();
+    return res;
+  }
+
   return (
     <div className="home">
       <header className="search-field">
@@ -65,7 +71,7 @@ export default function Home() {
           placeholder="Search a City..."
         />
         <button onClick={handleFetchWeather}>Submit</button>
-        <button>Logout</button>
+        <button onClick={() => handlelogOut()}>Logout</button>
       </header>
       <DailyForecast cityWeather={cityWeather} />
       <div className="recently-searched-cities">
