@@ -3,6 +3,8 @@ import Home from "./Components/Home";
 import Auth from "./Components/Auth";
 import { useEffect, useState } from "react";
 import { getUser } from "./Services/supabase-utils";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import RecentCities from "./Components/RecentCities";
 
 function App() {
   const [user, setUser] = useState({});
@@ -19,8 +21,14 @@ function App() {
 
   return (
     <>
-      <Home user={user} />
-      <Auth />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home user={user} />}>
+            {user && <Route element={<RecentCities />} />}
+          </Route>
+        </Routes>
+        <Auth user={user} />
+      </Router>
     </>
   );
 }
