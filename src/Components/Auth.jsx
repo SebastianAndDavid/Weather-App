@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { userSignIn, userSignUp } from "../Services/supabase-utils";
-import Home from "./Home";
 
 export default function Auth() {
   const [email, setEmail] = useState("");
@@ -11,7 +10,6 @@ export default function Auth() {
     const res = await userSignUp(email, password);
     setEmail("");
     setPassword("");
-    console.log("res", res);
     return res;
   }
 

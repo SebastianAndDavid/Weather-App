@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { fetchWeather } from "../Services/utils";
 import DailyForecast from "./DailyForecast";
@@ -5,7 +6,7 @@ import "./Home.css";
 import RecentCities from "./RecentCities";
 import { logOut } from "../Services/supabase-utils";
 
-export default function Home() {
+export default function Home({ user }) {
   const portland = {
     location: {
       name: "Portland",

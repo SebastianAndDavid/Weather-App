@@ -28,9 +28,15 @@ async function userSignIn(email, password) {
   }
 }
 
+async function getUser() {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  return user;
+}
+
 async function logOut() {
   const { error } = await supabase.auth.signOut();
   return error;
 }
-
-export { userSignUp, userSignIn, logOut };
+export { userSignUp, userSignIn, logOut, getUser };
