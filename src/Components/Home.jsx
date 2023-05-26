@@ -3,16 +3,21 @@ import { fetchWeather } from "../Services/utils";
 import DailyForecast from "./DailyForecast";
 import "./Home.css";
 // import RecentCities from "./RecentCities";
-import { addCitiesOnSubmit, logOut } from "../Services/supabase-utils";
+import {
+  addCitiesOnSubmit,
+  getLastFiveCities,
+  logOut,
+} from "../Services/supabase-utils";
 import { portland } from "../Services/Portland";
 import { Outlet } from "react-router-dom";
 import RecentCities from "./RecentCities";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home({ user }) {
   const [searchCity, setSearchCity] = useState("Portland");
   const [cityWeather, setCityWeather] = useState(portland);
   const [isClicked, setIsClicked] = useState(false);
+  const [lastFiveCities, setLastFiveCities] = useState([]);
 
   async function handleFetchWeather() {
     const data = await fetchWeather(searchCity);
@@ -26,9 +31,22 @@ export default function Home({ user }) {
     }
   }
 
+  console.log("user", user.id);
+
+  async function handleGetFiveLastCities() {
+    const data = await getLastFiveCities(user.id);
+    console.log("data", data);
+    return data;
+  }
+
   async function handlelogOut() {
     const res = await logOut();
     return res;
+  }
+
+  function handleClick() {
+    handleGetFiveLastCities();
+    setIsClicked(true);
   }
 
   return (
@@ -46,7 +64,7 @@ export default function Home({ user }) {
       <div className="recently-searched-cities">
         <h5
           className="recent-searched-cities-button"
-          onClick={() => setIsClicked(true)}
+          onClick={() => handleClick()}
         >
           Recently Searched Cities
         </h5>
