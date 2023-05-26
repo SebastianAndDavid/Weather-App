@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
 import { fetchWeather } from "../Services/utils";
 import DailyForecast from "./DailyForecast";
 import "./Home.css";
@@ -8,14 +7,12 @@ import { addCitiesOnSubmit, logOut } from "../Services/supabase-utils";
 import { portland } from "../Services/Portland";
 import { Outlet } from "react-router-dom";
 import RecentCities from "./RecentCities";
+import { useState } from "react";
 
 export default function Home({ user }) {
   const [searchCity, setSearchCity] = useState("Portland");
   const [cityWeather, setCityWeather] = useState(portland);
-
-  // const error = {
-  //   error: { code: 1006, message: "No matching location found." },
-  // };
+  const [isClicked, setIsClicked] = useState(false);
 
   async function handleFetchWeather() {
     const data = await fetchWeather(searchCity);
@@ -47,11 +44,16 @@ export default function Home({ user }) {
       </header>
       <DailyForecast cityWeather={cityWeather} />
       <div className="recently-searched-cities">
-        <h5>Recently Searched Cities</h5>
+        <h5
+          className="recent-searched-cities-button"
+          onClick={() => setIsClicked(true)}
+        >
+          Recently Searched Cities
+        </h5>
       </div>
-      {user && (
+      {isClicked && (
         <div className="recent-cities">
-          <RecentCities city={portland} user={user} />
+          <RecentCities city={portland} />
         </div>
       )}
       <Outlet />
