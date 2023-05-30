@@ -8,14 +8,19 @@ const supabase = createClient(url, key);
 async function getUser() {
   const {
     data: { user },
+    error,
   } = await supabase.auth.getUser();
-  return user;
+  if (user) {
+    return user;
+  } else {
+    return error;
+  }
 }
 
-async function userSignUp() {
+async function userSignUp(email, password) {
   const { data, error } = await supabase.auth.signUp({
-    email: "david2@test.com",
-    password: "123456",
+    email,
+    password,
   });
   if (data) {
     return data;
@@ -24,10 +29,10 @@ async function userSignUp() {
   }
 }
 
-async function userSignIn() {
+async function userSignIn(email, password) {
   const { data, error } = await supabase.auth.signInWithPassword({
-    email: "david2@test.com",
-    password: "123456",
+    email,
+    password,
   });
   if (data) {
     return data;

@@ -5,6 +5,9 @@ import UserProvider from "./Context/UserContext";
 import { useState } from "react";
 import { getUser } from "./Utils/supabase-utils";
 import { useEffect } from "react";
+import Auth from "./Components/NotProtected/Auth";
+import ProtectedRoute from "./Components/Protected/ProtectedRoute";
+import UserHome from "./Components/Protected/UserHome";
 
 function App() {
   const [user, setUser] = useState({});
@@ -25,8 +28,11 @@ function App() {
         <UserProvider>
           <Routes>
             <Route path="/" element={<Home />} />
-            {/* <Auth/> - onSubmit, set the user into state in Context. Then redirect to <UserHome/> */}
-            {/* <Route element={<ProtectedRoute/>} - this functions checks if there's a user, if YES then go to <UserHome/> which also calls <RecentCities/> /> */}
+            <Route path="/auth" element={<Auth />} />
+
+            <Route element={<ProtectedRoute />}>
+              <Route path="/user-home" element={<UserHome />} />
+            </Route>
           </Routes>
         </UserProvider>
       </Router>
