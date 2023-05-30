@@ -9,10 +9,14 @@ const UserContext = createContext();
 
 export default function UserProvider({ children }) {
   const [user, setUser] = useState({});
-
   async function verifyUser() {
     const res = await getUser();
-    setUser(res);
+    console.log("res", res);
+    if (res) {
+      setUser(res);
+    } else {
+      null;
+    }
   }
 
   useEffect(() => {

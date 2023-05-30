@@ -8,12 +8,12 @@ const supabase = createClient(url, key);
 async function getUser() {
   const {
     data: { user },
-    error,
   } = await supabase.auth.getUser();
+  console.log("user in utils", user);
   if (user) {
     return user;
   } else {
-    return error;
+    return null;
   }
 }
 
