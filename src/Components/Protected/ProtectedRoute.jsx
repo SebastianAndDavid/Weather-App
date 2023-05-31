@@ -1,9 +1,9 @@
 import { Outlet, Navigate } from "react-router-dom";
-import { useUser } from "../../Context/UserContext";
+import { useUserContext } from "../../Context/UserContext";
 
 export default function ProtectedRoute() {
-  const user = useUser();
+  const user = useUserContext();
   console.log("user in protected route", user);
-  if (user[0] && !user[0].email) return <Navigate to="/" replace={true} />;
+  if (user === null) return <Navigate to="/" />;
   return <Outlet />;
 }

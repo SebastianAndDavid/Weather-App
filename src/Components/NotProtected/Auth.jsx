@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { userSignIn, userSignUp } from "../../Utils/supabase-utils";
+import { useUserContext } from "../../Context/UserContext";
 
 export default function Auth() {
+  const { setIsUser } = useUserContext();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -16,8 +18,10 @@ export default function Auth() {
   async function handleSignIn(e) {
     e.preventDefault();
     const res = await userSignIn(email, password);
+    console.log("res in signIn", res);
     setEmail("");
     setPassword("");
+    setIsUser(res);
     return res;
   }
 

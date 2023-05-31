@@ -1,31 +1,29 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
-import { useContext } from "react";
-import { useEffect } from "react";
 import { createContext } from "react";
-import { getUser } from "../Utils/supabase-utils";
+import { useState, useContext, useEffect } from "react";
+// import { getUser } from "../Utils/supabase-utils";
 
 const UserContext = createContext();
 
 export default function UserProvider({ children }) {
-  const [user, setUser] = useState({});
-  async function verifyUser() {
-    const res = await getUser();
-    console.log("res", res);
-    if (res) {
-      setUser(res);
-    } else {
-      null;
-    }
-  }
+  const [isUser, setIsUser] = useState({});
+  // async function verifyUser() {
+  //   const res = await getUser();
+  //   console.log("res", res);
+  //   if (res) {
+  //     setIsUser(res);
+  //   } else {
+  //     null;
+  //   }
+  // }
 
-  useEffect(() => {
-    verifyUser();
-  }, []);
-
+  // useEffect(() => {
+  //   verifyUser();
+  // }, []);
+  console.log("isUser in context", isUser);
   const stateAndSetters = {
-    user,
-    setUser,
+    isUser,
+    setIsUser,
   };
 
   return (
@@ -35,7 +33,15 @@ export default function UserProvider({ children }) {
   );
 }
 
-export function useUser() {
-  const { user, setUser } = useContext(UserContext);
-  return [user, setUser];
+export function useUserContext() {
+  return useContext(UserContext);
 }
+
+// export function useUser() {
+//   const { isUser } = useContext(UserContext);
+//   if (isUser) {
+//     return isUser;
+//   } else {
+//     return null;
+//   }
+// }

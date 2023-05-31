@@ -28,10 +28,10 @@ function App() {
         <UserProvider>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/auth" element={<Auth />} />
+            <Route path="auth" element={<Auth />} />
 
             <Route element={<ProtectedRoute />}>
-              <Route path="/user-home" element={<UserHome />} />
+              <Route path="user-home" element={<UserHome />} />
             </Route>
           </Routes>
         </UserProvider>
