@@ -11,9 +11,9 @@ async function getUser() {
   } = await supabase.auth.getUser();
   console.log("user in utils", user);
   if (user) {
-    return user;
+    return true;
   } else {
-    return null;
+    return false;
   }
 }
 
