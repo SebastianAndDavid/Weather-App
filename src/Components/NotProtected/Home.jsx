@@ -2,9 +2,11 @@ import { useState } from "react";
 import { fetchWeather } from "../../Utils/weather-utils";
 import DailyForecast from "./DailyForecast";
 
+import { portland } from "../../Utils/portland";
+
 export default function Home() {
-  const [searchCity, setSearchCity] = useState("");
-  const [cityWeather, setCityWeather] = useState({});
+  const [searchCity, setSearchCity] = useState("Portland");
+  const [cityWeather, setCityWeather] = useState(portland);
 
   async function handleFetchWeather() {
     const data = await fetchWeather(searchCity);
