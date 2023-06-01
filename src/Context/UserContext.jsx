@@ -6,13 +6,13 @@ import { getUser } from "../Utils/supabase-utils";
 const UserContext = createContext();
 
 export default function UserProvider({ children }) {
-  const [isUser, setIsUser] = useState({});
+  const [isUser, setIsUser] = useState(verifyUser());
   async function verifyUser() {
     const res = await getUser();
     if (res) {
-      setIsUser(res);
+      setIsUser(true);
     } else {
-      null;
+      setIsUser(false);
     }
   }
 
