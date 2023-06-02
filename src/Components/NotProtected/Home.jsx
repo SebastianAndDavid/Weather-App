@@ -1,7 +1,7 @@
+import "./NotProtected.css";
 import { useState } from "react";
 import { fetchWeather } from "../../Utils/weather-utils";
 import DailyForecast from "./DailyForecast";
-
 import { portland } from "../../Utils/portland";
 
 export default function Home() {
@@ -28,7 +28,7 @@ export default function Home() {
             placeholder="Search a City..."
           />
           <button onClick={handleFetchWeather}>Submit</button>
-          {/* <button onClick={() => handlelogOut()}>Logout</button> */}
+          <button>Logout</button>
         </header>
         <DailyForecast cityWeather={cityWeather} />
       </div>
