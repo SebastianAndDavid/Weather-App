@@ -1,24 +1,26 @@
 import { useState } from "react";
-import { userSignUp } from "../../Utils/supabase-utils";
-// import { useUserContext } from "../../Context/UserContext";
+import { useUserContext } from "../../Context/UserContext";
+import { userSignIn } from "../../Utils/supabase-utils";
 
-export default function Auth() {
-  // const { setIsUser } = useUserContext();
+export default function SignInAuth() {
+  const { setIsUser } = useUserContext();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  async function handleSignUp(e) {
+  async function handleSignIn(e) {
     e.preventDefault();
-    const res = await userSignUp(email, password);
+    const res = await userSignIn(email, password);
+    console.log("res in signIn", res);
     setEmail("");
     setPassword("");
+    setIsUser(res);
     return res;
   }
 
   return (
-    <div className="auth-home">
-      Sign Up
-      <form className="auth-form" onSubmit={(e) => handleSignUp(e)}>
+    <div>
+      Sign In
+      <form className="auth-form" onSubmit={(e) => handleSignIn(e)}>
         <label>
           Email
           <input
@@ -39,7 +41,6 @@ export default function Auth() {
         </label>
         <button>Submit</button>
       </form>
-      <br></br>
     </div>
   );
 }

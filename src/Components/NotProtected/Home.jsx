@@ -3,7 +3,7 @@ import { useState } from "react";
 import { fetchWeather } from "../../Utils/weather-utils";
 import DailyForecast from "./DailyForecast";
 import { portland } from "../../Utils/portland";
-import Auth from "./Auth";
+import Auth from "./SignUpAuth";
 
 export default function Home() {
   const [searchCity, setSearchCity] = useState("Portland");
