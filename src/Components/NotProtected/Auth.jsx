@@ -26,9 +26,9 @@ export default function Auth() {
   }
 
   return (
-    <div>
+    <div className="auth-home">
       Sign Up
-      <form onSubmit={(e) => handleSignUp(e)}>
+      <form className="auth-form" onSubmit={(e) => handleSignUp(e)}>
         <label>
           Email
           <input
@@ -51,7 +51,7 @@ export default function Auth() {
       </form>
       <br></br>
       Sign In
-      <form onSubmit={(e) => handleSignIn(e)}>
+      <form className="auth-form" onSubmit={(e) => handleSignIn(e)}>
         <label>
           Email
           <input

@@ -7,13 +7,15 @@ export default function DailyForecast({ cityWeather }) {
   const feelsLike = cityWeather.current.feelslike_f;
 
   return (
-    <div className="daily-forecast">
-      <h4>{cityName}</h4>
-      <p>Country: {cityCountry}</p>
-      <p>Current Temperature: {tempF}</p>
-      {cityWeather.current.temp_f != feelsLike && (
-        <p>Feels like: {feelsLike}</p>
-      )}
+    <div className="daily-forecast-container">
+      <div className="daily-forecast">
+        <h4>{cityName}</h4>
+        <p>Country: {cityCountry}</p>
+        <p>Current Temperature: {tempF}</p>
+        {cityWeather.current.temp_f != feelsLike && (
+          <p>Feels like: {feelsLike}</p>
+        )}
+      </div>
     </div>
   );
 }
