@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useUserContext } from "../../Context/UserContext";
 import { userSignIn } from "../../Utils/supabase-utils";
-import { Navigate } from "react-router-dom";
 
 export default function SignInAuth() {
   const { setIsUser } = useUserContext();
