@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useUserContext } from "../../Context/UserContext";
 import { userSignIn } from "../../Utils/supabase-utils";
+import { Navigate } from "react-router-dom";
 
 export default function SignInAuth() {
   const { setIsUser } = useUserContext();
@@ -10,11 +11,16 @@ export default function SignInAuth() {
   async function handleSignIn(e) {
     e.preventDefault();
     const res = await userSignIn(email, password);
-    console.log("res in signIn", res);
-    setEmail("");
-    setPassword("");
-    setIsUser(res);
-    return res;
+    console.log("res in sign in auth", res);
+    if (res.user === null) {
+      alert("Invalid credentials");
+    } else {
+      setEmail("");
+      setPassword("");
+      setIsUser(res);
+      window.location.replace("/user-home");
+      return res;
+    }
   }
 
   return (
