@@ -3,12 +3,14 @@ import { useState } from "react";
 import { fetchWeather } from "../../Utils/weather-utils";
 import DailyForecast from "./DailyForecast";
 import { portland } from "../../Utils/portland";
-import Auth from "./SignUpAuth";
+import SignUpAuth from "./SignUpAuth";
+import SignInAuth from "./SignInAuth";
 
 export default function Home() {
   const [searchCity, setSearchCity] = useState("Portland");
   const [cityWeather, setCityWeather] = useState(portland);
   const [isClicked, setIsClicked] = useState(false);
+  const [loginClick, setLoginClick] = useState(false);
 
   async function handleFetchWeather() {
     const data = await fetchWeather(searchCity);
@@ -24,6 +26,10 @@ export default function Home() {
     setIsClicked(true);
   }
 
+  function handleLogin() {
+    setLoginClick(true);
+  }
+
   return (
     <>
       <div className="home">
@@ -34,7 +40,7 @@ export default function Home() {
             placeholder="Search a City..."
           />
           <button onClick={handleFetchWeather}>Submit</button>
-          {/* <button onClick={() => handleClick()}>Login</button> */}
+          <button onClick={() => handleLogin()}>Login</button>
         </header>
         <DailyForecast cityWeather={cityWeather} />
         <div className="login-container">
@@ -45,7 +51,8 @@ export default function Home() {
             </p>
           </div>
         </div>
-        {isClicked && <Auth />}
+        {isClicked && !loginClick && <SignUpAuth />}
+        {loginClick && <SignInAuth />}
       </div>
     </>
   );

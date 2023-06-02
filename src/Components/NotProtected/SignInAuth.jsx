@@ -18,7 +18,7 @@ export default function SignInAuth() {
   }
 
   return (
-    <div>
+    <div className="auth-home">
       Sign In
       <form className="auth-form" onSubmit={(e) => handleSignIn(e)}>
         <label>

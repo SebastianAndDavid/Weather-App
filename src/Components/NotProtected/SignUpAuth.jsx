@@ -2,7 +2,7 @@ import { useState } from "react";
 import { userSignUp } from "../../Utils/supabase-utils";
 // import { useUserContext } from "../../Context/UserContext";
 
-export default function Auth() {
+export default function SignUpAuth() {
   // const { setIsUser } = useUserContext();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

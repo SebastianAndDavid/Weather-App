@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Components/NotProtected/Home";
 import UserProvider from "./Context/UserContext";
-import Auth from "./Components/NotProtected/Auth";
+import SignUpAuth from "./Components/NotProtected/SignUpAuth";
 import ProtectedRoute from "./Components/Protected/ProtectedRoute";
 import UserHome from "./Components/Protected/UserHome";
 
@@ -13,7 +13,7 @@ function App() {
         <UserProvider>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="auth" element={<Auth />} />
+            <Route path="auth" element={<SignUpAuth />} />
 
             <Route element={<ProtectedRoute />}>
               <Route path="user-home" element={<UserHome />} />
