@@ -26,7 +26,6 @@ export default function UserProvider({ children }) {
     verifyUser();
     setCurrentUser();
   }, []);
-  console.log("user in context", user);
   const stateAndSetters = {
     isUser,
     setIsUser,

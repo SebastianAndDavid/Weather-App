@@ -70,6 +70,20 @@ async function addCitiesOnSubmit(name, id) {
   }
 }
 
+async function getLastFiveCities(userId) {
+  const { data, error } = await supabase
+    .from("searched_cities")
+    .select("*")
+    .eq("user_id", userId)
+    .order("id", { ascending: false })
+    .range(0, 4);
+  if (data) {
+    return data;
+  } else {
+    return error;
+  }
+}
+
 export {
   userSignUp,
   getUser,
@@ -77,4 +91,5 @@ export {
   logOut,
   getCurrentUser,
   addCitiesOnSubmit,
+  getLastFiveCities,
 };

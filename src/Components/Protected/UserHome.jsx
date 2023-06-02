@@ -11,13 +11,16 @@ export default function UserHome() {
   const [searchCity, setSearchCity] = useState("Portland");
   const [cityWeather, setCityWeather] = useState(portland);
 
+  console.log("cityWeather", cityWeather);
+
   async function handleFetchWeather() {
     const data = await fetchWeather(searchCity);
     if (data === "error") {
       return alert("Error: Please enter a valid location");
     } else {
       setCityWeather(data);
-      await addCitiesOnSubmit(cityWeather.location.name, user.id);
+      const added = await addCitiesOnSubmit(cityWeather.location.name, user.id);
+      console.log("added", added);
       return data;
     }
   }

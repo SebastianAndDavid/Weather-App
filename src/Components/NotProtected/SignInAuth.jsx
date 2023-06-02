@@ -10,7 +10,6 @@ export default function SignInAuth() {
   async function handleSignIn(e) {
     e.preventDefault();
     const res = await userSignIn(email, password);
-    console.log("res in sign in auth", res);
     if (res.user === null) {
       alert("Invalid credentials");
     } else {
