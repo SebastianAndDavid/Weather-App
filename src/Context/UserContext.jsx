@@ -1,12 +1,13 @@
 /* eslint-disable react/prop-types */
 import { createContext } from "react";
 import { useState, useContext, useEffect } from "react";
-import { getUser } from "../Utils/supabase-utils";
+import { getCurrentUser, getUser } from "../Utils/supabase-utils";
 
 const UserContext = createContext();
 
 export default function UserProvider({ children }) {
   const [isUser, setIsUser] = useState(verifyUser());
+  const [user, setUser] = useState({});
   async function verifyUser() {
     const res = await getUser();
     if (res) {
@@ -16,13 +17,21 @@ export default function UserProvider({ children }) {
     }
   }
 
+  async function setCurrentUser() {
+    const res = await getCurrentUser();
+    setUser(res);
+  }
+
   useEffect(() => {
     verifyUser();
+    setCurrentUser();
   }, []);
-  console.log("isUser in context", isUser);
+  console.log("user in context", user);
   const stateAndSetters = {
     isUser,
     setIsUser,
+    user,
+    setUser,
   };
 
   return (
