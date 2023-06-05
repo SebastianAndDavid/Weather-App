@@ -35,7 +35,7 @@ export default function UserHome() {
 
   useEffect(() => {
     handleFetchLastFiveCities();
-  }, [cityWeather]);
+  }, [user, cityWeather]);
 
   async function handlelogOut() {
     await logOut();
