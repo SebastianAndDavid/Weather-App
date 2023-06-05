@@ -19,8 +19,7 @@ export default function UserHome() {
       return alert("Error: Please enter a valid location");
     } else {
       setCityWeather(data);
-      const added = await addCitiesOnSubmit(cityWeather.location.name, user.id);
-      console.log("added", added);
+      await addCitiesOnSubmit(data.location.name, user.id);
       return data;
     }
   }
