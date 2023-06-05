@@ -84,6 +84,18 @@ async function getLastFiveCities(userId) {
   }
 }
 
+async function deleteCityById(cityId) {
+  const { data, error } = await supabase
+    .from("searched_cities")
+    .delete()
+    .eq("id", cityId);
+  if (data) {
+    return data;
+  } else {
+    return error;
+  }
+}
+
 export {
   userSignUp,
   getUser,
@@ -92,4 +104,5 @@ export {
   getCurrentUser,
   addCitiesOnSubmit,
   getLastFiveCities,
+  deleteCityById,
 };
