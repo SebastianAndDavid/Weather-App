@@ -3,6 +3,6 @@ import { useUserContext } from "../../Context/UserContext";
 
 export default function ProtectedRoute() {
   const { isUser } = useUserContext();
-  if (!isUser) return <Navigate to="/" />;
+  if (isUser === false) return <Navigate to="/" />;
   return <Outlet />;
 }

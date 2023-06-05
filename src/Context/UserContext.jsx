@@ -6,7 +6,7 @@ import { getCurrentUser, getUser } from "../Utils/supabase-utils";
 const UserContext = createContext();
 
 export default function UserProvider({ children }) {
-  const [isUser, setIsUser] = useState(verifyUser());
+  const [isUser, setIsUser] = useState(true);
   const [user, setUser] = useState({});
   async function verifyUser() {
     const res = await getUser();
@@ -40,6 +40,7 @@ export default function UserProvider({ children }) {
   );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useUserContext() {
   return useContext(UserContext);
 }

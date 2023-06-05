@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { fetchWeather } from "../../Utils/weather-utils";
 
 import { portland } from "../../Utils/portland";
 import DailyForecast from "../NotProtected/DailyForecast";
-import { addCitiesOnSubmit, logOut } from "../../Utils/supabase-utils";
+import {
+  addCitiesOnSubmit,
+  getLastFiveCities,
+  logOut,
+} from "../../Utils/supabase-utils";
 import { useUserContext } from "../../Context/UserContext";
 
 export default function UserHome() {
@@ -11,7 +15,7 @@ export default function UserHome() {
   const [searchCity, setSearchCity] = useState("Portland");
   const [cityWeather, setCityWeather] = useState(portland);
 
-  console.log("cityWeather", cityWeather);
+  console.log("user in userHome", user);
 
   async function handleFetchWeather() {
     const data = await fetchWeather(searchCity);
@@ -24,6 +28,15 @@ export default function UserHome() {
     }
   }
 
+  async function handleFetchLastFiveCities() {
+    const data = await getLastFiveCities(user.id);
+    console.log("data", data);
+  }
+
+  useEffect(() => {
+    handleFetchLastFiveCities();
+  }, [cityWeather]);
+
   async function handlelogOut() {
     await logOut();
     window.location.replace("/");
@@ -34,6 +47,7 @@ export default function UserHome() {
       <div className="home">
         <header className="search-field">
           <h3>Weather App</h3>
+          <h4>Welcome {user.email}</h4>
           <input
             onChange={(e) => setSearchCity(e.target.value)}
             placeholder="Search a City..."
