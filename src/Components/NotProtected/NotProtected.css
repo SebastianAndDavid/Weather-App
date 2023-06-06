@@ -47,7 +47,16 @@
   justify-content: center;
   border: 1px solid black;
   margin-top: 5px;
-  height: 200px;
+  height: 300px;
+  width: 1280px;
+  background-image: url(../../../public/partlycloudy.jpg);
+  background-repeat: no-repeat;
+}
+
+.daily-forecast-field {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .daily-forecast {
@@ -70,4 +79,32 @@
   flex-direction: column;
   align-items: flex-start;
   width: 19vw;
+}
+
+/* RecentCities */
+
+.city-parent {
+  display: flex;
+  justify-content: center;
+}
+
+.city-container {
+  display: flex;
+  width: 800px;
+}
+
+.city-card {
+  border: 1px solid black;
+  margin: 10px;
+  width: 200px;
+  height: 100px;
+}
+
+/* Loader */
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }

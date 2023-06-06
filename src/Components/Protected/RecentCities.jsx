@@ -7,11 +7,11 @@ export default function RecentCities({ city }) {
   }
   return (
     <div className="city-card">
+      <h4>{city.city}</h4>
       <label>
         Delete
         <input type="checkbox" onClick={() => handleCityDelete()}></input>
       </label>
-      <h4>{city.city}</h4>
     </div>
   );
 }

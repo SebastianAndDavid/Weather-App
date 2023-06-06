@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { fetchWeather } from "../../Utils/weather-utils";
-
+import { CirclesWithBar } from "react-loader-spinner";
 import { portland } from "../../Utils/portland";
 import DailyForecast from "../NotProtected/DailyForecast";
 import RecentCities from "./RecentCities";
@@ -19,14 +19,20 @@ export default function UserHome() {
   const [lastFiveCities, setLastFiveCities] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  console.log("cityWeather", cityWeather);
+
   async function handleFetchWeather() {
+    setLoading(true);
+
     const data = await fetchWeather(searchCity);
     if (data === "error") {
+      setLoading(false);
       return alert("Error: Please enter a valid location");
     } else {
       setLastFiveCities([]);
       setCityWeather(data);
       await addCitiesOnSubmit(data.location.name, user.id);
+      setLoading(false);
       return data;
     }
   }
@@ -54,7 +60,7 @@ export default function UserHome() {
 
   useEffect(() => {
     handleFetchLastFiveCities();
-  }, [user, cityWeather, lastFiveCities]);
+  }, [user, cityWeather]);
 
   async function handlelogOut() {
     await logOut();
@@ -63,7 +69,11 @@ export default function UserHome() {
 
   return (
     <>
-      {!loading && (
+      {loading ? (
+        <div className="loader-container">
+          <CirclesWithBar />
+        </div>
+      ) : (
         <div className="home">
           <header className="search-field">
             <h3>Weather App</h3>
@@ -75,10 +85,19 @@ export default function UserHome() {
             <button onClick={handleFetchWeather}>Submit</button>
             <button onClick={() => handlelogOut()}>Logout</button>
           </header>
-          <DailyForecast cityWeather={cityWeather} />
-          {lastFiveCities.map((city, i) => {
-            return <RecentCities key={city.created_at + i} city={city} />;
-          })}
+          <div className="daily-forecast-field">
+            <DailyForecast cityWeather={cityWeather} />
+          </div>
+          <h4>
+            Here you can see a list of cities you have recently searched for!
+          </h4>
+          <div className="city-parent">
+            <div className="city-container">
+              {lastFiveCities.map((city, i) => {
+                return <RecentCities key={city.created_at + i} city={city} />;
+              })}
+            </div>
+          </div>
         </div>
       )}
     </>
