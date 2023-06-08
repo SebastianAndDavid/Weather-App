@@ -18,6 +18,9 @@ export default function UserHome() {
   const [cityWeather, setCityWeather] = useState(portland);
   const [lastFiveCities, setLastFiveCities] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
+
+  console.log("isClicked", isClicked);
 
   console.log("cityWeather", cityWeather);
 
@@ -36,6 +39,12 @@ export default function UserHome() {
       return data;
     }
   }
+
+  function handleClick(clicked) {
+    !isClicked ? setIsClicked(clicked) : setIsClicked(false);
+  }
+
+  console.log("lastFiveCities", lastFiveCities);
 
   async function handleFetchLastFiveCities() {
     const data = await getLastFiveCities(user.id);
@@ -60,7 +69,7 @@ export default function UserHome() {
 
   useEffect(() => {
     handleFetchLastFiveCities();
-  }, [user, cityWeather]);
+  }, [user, cityWeather, isClicked]);
 
   async function handlelogOut() {
     await logOut();
@@ -94,7 +103,13 @@ export default function UserHome() {
           <div className="city-parent">
             <div className="city-container">
               {lastFiveCities.map((city, i) => {
-                return <RecentCities key={city.created_at + i} city={city} />;
+                return (
+                  <RecentCities
+                    key={city.created_at + i}
+                    city={city}
+                    handleClick={handleClick}
+                  />
+                );
               })}
             </div>
           </div>

@@ -3,7 +3,7 @@ import { deleteCityById } from "../../Utils/supabase-utils";
 import { fetchWeather } from "../../Utils/weather-utils";
 
 /* eslint-disable react/prop-types */
-export default function RecentCities({ city }) {
+export default function RecentCities({ city, handleClick }) {
   const [cityObj, setCityObj] = useState({});
 
   const cityCondition = cityObj?.current?.condition?.text;
@@ -12,11 +12,9 @@ export default function RecentCities({ city }) {
   const inlineStyle = {
     backgroundImage: `url(${imageUrl.replace(/\s/g, "%20")})`,
   };
-  console.log("cityObj", cityObj);
 
   async function handleFetchCityObj() {
     const data = await fetchWeather(city.city);
-    console.log("data", data);
     setCityObj(data);
     return data;
   }
@@ -27,6 +25,7 @@ export default function RecentCities({ city }) {
 
   async function handleCityDelete() {
     await deleteCityById(city.id);
+    handleClick(true);
   }
   return (
     <div className="city-card" style={inlineStyle}>
