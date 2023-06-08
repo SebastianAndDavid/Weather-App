@@ -42,7 +42,9 @@ export default function Home() {
           <button onClick={handleFetchWeather}>Submit</button>
           <button onClick={() => handleLogin()}>Login</button>
         </header>
-        <DailyForecast cityWeather={cityWeather} />
+        <div className="daily-forecast-field">
+          <DailyForecast cityWeather={cityWeather} />
+        </div>
         <div className="login-container">
           <div className="login-field">
             <p>Want to see your recently searched cities?</p>

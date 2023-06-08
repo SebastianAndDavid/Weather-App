@@ -7,4 +7,6 @@
 
 body {
   height: 100vh;
+  background-color: #bdd0ef;
+  background-image: linear-gradient(to right, #bdd0ef, #3361ac);
 }

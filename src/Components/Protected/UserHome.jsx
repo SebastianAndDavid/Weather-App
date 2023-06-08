@@ -85,12 +85,14 @@ export default function UserHome() {
           <header className="search-field">
             <h3>Weather App</h3>
             <h4>Welcome {user.email}</h4>
-            <input
-              onChange={(e) => setSearchCity(e.target.value)}
-              placeholder="Search a City..."
-            />
-            <button onClick={handleFetchWeather}>Submit</button>
-            <button onClick={() => handlelogOut()}>Logout</button>
+            <div className="input-container">
+              <input
+                onChange={(e) => setSearchCity(e.target.value)}
+                placeholder="Search a City..."
+              />
+              <button onClick={handleFetchWeather}>Submit</button>
+              <button onClick={() => handlelogOut()}>Logout</button>
+            </div>
           </header>
           <div className="daily-forecast-field">
             <DailyForecast cityWeather={cityWeather} />
