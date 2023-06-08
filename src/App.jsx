@@ -2,9 +2,9 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Components/NotProtected/Home";
 import UserProvider from "./Context/UserContext";
-import SignUpAuth from "./Components/NotProtected/SignUpAuth";
 import ProtectedRoute from "./Components/Protected/ProtectedRoute";
 import UserHome from "./Components/Protected/UserHome";
+import NotProtected from "./Components/NotProtected/NotProtected";
 
 function App() {
   return (
@@ -12,8 +12,9 @@ function App() {
       <Router>
         <UserProvider>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="auth" element={<SignUpAuth />} />
+            <Route element={<NotProtected />}>
+              <Route path="/" element={<Home />} />
+            </Route>
 
             <Route element={<ProtectedRoute />}>
               <Route path="user-home" element={<UserHome />} />

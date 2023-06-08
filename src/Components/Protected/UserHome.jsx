@@ -44,8 +44,6 @@ export default function UserHome() {
     !isClicked ? setIsClicked(clicked) : setIsClicked(false);
   }
 
-  console.log("lastFiveCities", lastFiveCities);
-
   async function handleFetchLastFiveCities() {
     const data = await getLastFiveCities(user.id);
     if (data) {
