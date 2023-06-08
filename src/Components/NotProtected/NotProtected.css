@@ -1,0 +1,123 @@
+/* Home.jsx */
+
+.search-field {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background-image: linear-gradient(
+    to right,
+    #9eb6db,
+    #3361ac 25%,
+    #3361ac 75%,
+    #9eb6db 100%
+  );
+  height: 30px;
+  padding: 10px;
+}
+
+.search-field input button {
+  height: 20px;
+}
+
+.search-field h3 {
+  position: absolute;
+  right: 50%;
+}
+
+.search-field h4 {
+  position: absolute;
+  right: 91%;
+}
+
+/* login container */
+
+.login-container {
+  display: flex;
+  justify-content: center;
+}
+
+.login-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 19vw;
+}
+
+.login {
+  border: 1px solid black;
+  background-color: rgb(245, 219, 186);
+  padding: 2px;
+}
+
+.login:hover {
+  cursor: pointer;
+  background-color: antiquewhite;
+}
+
+/* DailyForecast.jsx */
+
+.daily-forecast-container {
+  display: flex;
+  justify-content: center;
+  border: 1px solid black;
+  margin-top: 5px;
+  height: 300px;
+  width: 1280px;
+  background-repeat: no-repeat;
+}
+
+.daily-forecast-field {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.daily-forecast {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 19vw;
+}
+
+/* Auth.jsx */
+
+.auth-home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 19vw;
+}
+
+/* RecentCities */
+
+.city-parent {
+  display: flex;
+  justify-content: center;
+}
+
+.city-container {
+  display: flex;
+  width: 800px;
+}
+
+.city-card {
+  border: 1px solid black;
+  margin: 10px;
+  width: 200px;
+  height: 100px;
+}
+
+/* Loader */
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
