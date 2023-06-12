@@ -20,10 +20,6 @@ export default function UserHome() {
   const [loading, setLoading] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
 
-  console.log("isClicked", isClicked);
-
-  console.log("cityWeather", cityWeather);
-
   async function handleFetchWeather() {
     setLoading(true);
 

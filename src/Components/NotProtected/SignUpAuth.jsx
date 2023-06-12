@@ -10,9 +10,11 @@ export default function SignUpAuth() {
   async function handleSignUp(e) {
     e.preventDefault();
     const res = await userSignUp(email, password);
-    if (res.user === null) {
+    if (res === undefined) {
+      console.log(res);
       alert("Please enter a valid email or password");
     } else {
+      console.log("res", res);
       setEmail("");
       setPassword("");
       setIsUser(res);
