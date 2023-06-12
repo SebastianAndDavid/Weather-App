@@ -8,7 +8,7 @@ export default function RecentCities({ city, handleClick }) {
 
   const cityCondition = cityObj?.current?.condition?.text;
 
-  const imageUrl = `../../../public/${cityCondition}.jpg`;
+  const imageUrl = `${cityCondition}.jpg`;
   const inlineStyle = {
     backgroundImage: `url(${imageUrl.replace(/\s/g, "%20")})`,
   };
