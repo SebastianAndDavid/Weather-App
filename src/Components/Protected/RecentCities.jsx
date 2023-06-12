@@ -1,8 +1,8 @@
+import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { deleteCityById } from "../../Utils/supabase-utils";
 import { fetchWeather } from "../../Utils/weather-utils";
 
-/* eslint-disable react/prop-types */
 export default function RecentCities({ city, handleClick }) {
   const [cityObj, setCityObj] = useState({});
 
@@ -20,20 +20,30 @@ export default function RecentCities({ city, handleClick }) {
   }
 
   useEffect(() => {
-    handleFetchCityObj();
-  }, []);
+    async function fetchData() {
+      await handleFetchCityObj();
+    }
+
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [handleCityDelete]);
 
   async function handleCityDelete() {
     await deleteCityById(city.id);
     handleClick(true);
   }
+
   return (
     <div className="city-card" style={inlineStyle}>
       <h4>{city.city}</h4>
       <label>
         Delete
-        <input type="checkbox" onClick={() => handleCityDelete()}></input>
+        <input type="checkbox" onClick={() => handleCityDelete()} />
       </label>
     </div>
   );
 }
+RecentCities.propTypes = {
+  city: PropTypes.object.isRequired,
+  handleClick: PropTypes.func.isRequired,
+};
