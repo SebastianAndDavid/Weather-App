@@ -28,6 +28,7 @@ export default function Home() {
 
   function handleLogin() {
     setLoginClick(true);
+    !isClicked ? setIsClicked(loginClick) : setLoginClick(false);
   }
 
   return (
