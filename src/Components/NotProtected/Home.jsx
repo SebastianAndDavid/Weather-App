@@ -1,5 +1,5 @@
 import "./NotProtected.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { fetchWeather } from "../../Utils/weather-utils";
 import DailyForecast from "./DailyForecast";
 import { portland } from "../../Utils/portland";
@@ -26,8 +26,13 @@ export default function Home() {
     setIsClicked(true);
   }
 
+  useEffect(() => {
+    handleFetchWeather();
+  }, []);
+
   function handleLogin() {
     setLoginClick(true);
+    !isClicked ? setIsClicked(loginClick) : setLoginClick(false);
   }
 
   return (

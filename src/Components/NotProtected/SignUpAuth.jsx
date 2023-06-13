@@ -9,17 +9,15 @@ export default function SignUpAuth() {
 
   async function handleSignUp(e) {
     e.preventDefault();
-    const res = await userSignUp(email, password);
-    if (res === undefined) {
-      console.log(res);
-      alert("Please enter a valid email or password");
-    } else {
-      console.log("res", res);
+    try {
+      const res = await userSignUp(email, password);
       setEmail("");
       setPassword("");
       setIsUser(res);
       window.location.replace("/user-home");
       return res;
+    } catch (error) {
+      alert("Error signing up: " + error.message);
     }
   }
 

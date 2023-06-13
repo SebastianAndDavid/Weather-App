@@ -9,15 +9,15 @@ export default function SignInAuth() {
 
   async function handleSignIn(e) {
     e.preventDefault();
-    const res = await userSignIn(email, password);
-    if (res.user === null) {
-      alert("Invalid credentials");
-    } else {
+    try {
+      const res = await userSignIn(email, password);
       setEmail("");
       setPassword("");
       setIsUser(res);
       window.location.replace("/user-home");
       return res;
+    } catch (error) {
+      alert("Error signing in: " + error.message);
     }
   }
 

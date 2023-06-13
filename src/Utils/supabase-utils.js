@@ -28,44 +28,27 @@ async function getCurrentUser() {
   }
 }
 
-// async function userSignUp(email, password) {
-//   const { data, error } = await supabase.auth.signUp({
-//     email,
-//     password,
-//   });
-//   if (!error) {
-//     return data;
-//   } else {
-//     console.log("signup error in utils", error);
-//     return error;
-//   }
-// }
-
-const userSignUp = async (email, password) => {
-  try {
-    const { user, error } = await supabase.auth.signUp({ email, password });
-    if (error) {
-      throw new Error(error.message);
-    }
-    // User signed up successfully
-    console.log("User signed up:", user);
-    return user;
-    // Additional logic after successful signup
-  } catch (error) {
-    console.error("Error signing up:", error.message);
-    // Handle the error and provide appropriate feedback to the user
+async function userSignUp(email, password) {
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password,
+  });
+  if (error) {
+    throw new Error(error.message);
+  } else {
+    return data;
   }
-};
+}
 
 async function userSignIn(email, password) {
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
   });
-  if (data) {
-    return data;
+  if (error) {
+    throw new Error(error.message);
   } else {
-    return error;
+    return data;
   }
 }
 

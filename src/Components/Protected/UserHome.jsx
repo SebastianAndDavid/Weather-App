@@ -43,7 +43,6 @@ export default function UserHome() {
   async function handleFetchLastFiveCities() {
     const data = await getLastFiveCities(user.id);
     if (data) {
-      setLastFiveCities([]);
       setLastFiveCities(data);
     } else {
       setLastFiveCities([]);
@@ -59,6 +58,9 @@ export default function UserHome() {
 
   useEffect(() => {
     handleLoading();
+    fetchWeather(searchCity)
+      .then((data) => setCityWeather(data))
+      .catch((error) => console.error(error));
   }, []);
 
   useEffect(() => {
