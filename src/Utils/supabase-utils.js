@@ -33,10 +33,10 @@ async function userSignUp(email, password) {
     email,
     password,
   });
-  if (data) {
-    return data;
+  if (error) {
+    throw new Error(error.message);
   } else {
-    return error;
+    return data;
   }
 }
 
@@ -45,10 +45,10 @@ async function userSignIn(email, password) {
     email,
     password,
   });
-  if (data) {
-    return data;
+  if (error) {
+    throw new Error(error.message);
   } else {
-    return error;
+    return data;
   }
 }
 
